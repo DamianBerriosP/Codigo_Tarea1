@@ -1,0 +1,30 @@
+# Abrir el archivo y leer los datos
+with open("cumulo_de_Virgo.dat", "r") as file:
+    lines = file.readlines()
+
+# Inicializar listas para almacenar los datos
+types = []
+sizes = []
+radial_velocities = []
+
+# Leer los datos de las columnas "Type", "Size" y "RV" y guardarlos en las listas correspondientes
+for line in lines:
+    data = line.split()
+    if len(data) >= 3:
+        galaxy_type = data[0]
+        size = float(data[1])
+        radial_velocity = float(data[2])
+
+        types.append(galaxy_type)
+        sizes.append(size)
+        radial_velocities.append(radial_velocity)
+
+# Calcular la moda del tipo de galaxias
+from statistics import mode
+try:
+    moda_tipo_galaxias = mode(types)
+    print(f"La moda del tipo de galaxias en el cúmulo de Virgo es: {moda_tipo_galaxias}")
+except StatisticsError:
+    print("No hay una moda clara en los tipos de galaxias.")
+
+# Puedes utilizar las listas sizes y radial_velocities para otros análisis si es necesario.
